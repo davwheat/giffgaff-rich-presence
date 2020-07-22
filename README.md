@@ -2,10 +2,6 @@
 
 Show your giffgaff goodybag usage in Discord!
 
-**Note:** the app token needed for all this to work is NOT included. This is for this repo's safety. If you want to use this, find it yourself using a man-in-the-middle proxy (or some other method).
-
-The token you need is the one included in the `Authorization` header to the OAuth API, preceded with `Basic`, **not** `Bearer`. Stick it in your `config.json`.
-
 ## Setup
 
 1. Clone the repo/Download the ZIP
@@ -15,6 +11,10 @@ The token you need is the one included in the `Authorization` header to the OAut
 5. Run (`yarn start`)
 6. ???
 7. Profit.
+
+**Note:** the app token needed for all this to work is NOT included. This is for this repo's safety. If you want to use this, find it yourself using a man-in-the-middle proxy (or some other method).
+
+The token you need is the one included in the `Authorization` header to the OAuth API, preceded with `Basic`, **not** `Bearer`. Stick it in your `config.json`.
 
 ## About
 
@@ -30,12 +30,15 @@ Maybe? The API endpoint is located at `publicapi.giffgaff.com`, and [giffgaff La
 
 I got the app's token by looking at my own internet traffic, not by decompiling the app or anything else silly.
 
+**If giffgaff actually decided to implement their member's ideas properly, this ridiculous method wouldn't be needed.** Even just allowing members to generate their own API keys which can only access their account would be **AMAZING**!
+
 ## Configuration
 
-|       Field       |     Default     | Description                                        |
-| :---------------: | :-------------: | -------------------------------------------------- |
-|   `membername`    |  `"mrcoolman"`  | Your giffgaff membername                           |
-|    `password`     | `"password123"` | Your giffgaff password                             |
-| `refreshInterval` |      `30`       | Amount of mins between usage updates<sup>[1]</sup> |
+|       Field       |     Default     | Description                                          |
+| :---------------: | :-------------: | ---------------------------------------------------- |
+|   `membername`    |  `"mrcoolman"`  | Your giffgaff membername                             |
+|    `password`     | `"password123"` | Your giffgaff password                               |
+| `refreshInterval` |      `30`       | Amount of mins between usage updates<sup>[1]</sup>   |
+|   `oauthToken`    |  `<nonsense>`   | Set this to the Basic token used by the giffgaff app |
 
 [1] - Don't go too low with this or you might trigger some form of spam prevention. 30 minutes seems reasonable to me. To be extra safe, you can bump it to 60 mins. If you're a risk taker, maybe try 10 or 15.
