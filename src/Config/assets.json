@@ -1,0 +1,41 @@
+{
+  "imageKeys": {
+    "logo_square": "giffgaff_square",
+    "payg_icon": "money-bag-credit",
+    "goodybags": {
+      "placeholder": "goodybag",
+      "6": {
+        "noReserve": "6-pound-goodybag",
+        "reserve": null
+      },
+      "8": {
+        "noReserve": "8-pound-goodybag",
+        "reserve": null
+      },
+      "10": {
+        "noReserve": "10-pound-goodybag",
+        "reserve": "10-pound-goodybag-reservetank"
+      },
+      "10-golden": {
+        "noReserve": "10-pound-golden-goodybag",
+        "reserve": "10-pound-golden-goodybag-reservetank"
+      },
+      "12": {
+        "noReserve": "12-pound-goodybag",
+        "reserve": "12-pound-goodybag-reservetank"
+      },
+      "15": {
+        "noReserve": "15-pound-goodybag",
+        "reserve": "15-pound-goodybag-reservetank"
+      },
+      "20": {
+        "noReserve": "20-pound-goodybag",
+        "reserve": "20-pound-goodybag-reservetank"
+      },
+      "25": {
+        "noReserve": "25-pound-goodybag",
+        "reserve": null
+      }
+    }
+  }
+}

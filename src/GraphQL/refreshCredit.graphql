@@ -1,0 +1,62 @@
+query refreshCredit {
+  member {
+    credit {
+      amount
+      freeGiffgaff {
+        enabled
+        expiryDate
+        __typename
+      }
+      current {
+        sku
+        expiryDate
+        expiresIn {
+          days
+          hours
+          __typename
+        }
+        reserve
+        price
+        allowance {
+          minutes
+          texts
+          data
+          euData
+          reserve
+          unlimitedData
+          unlimitedMinutes
+          __typename
+        }
+        balance {
+          data
+          euData
+          minutes
+          texts
+          reserve
+          outOfMinutes
+          outOfTexts
+          outOfData
+          __typename
+        }
+        __typename
+      }
+      next {
+        sku
+        startDate
+        reserve
+        price
+        allowance {
+          minutes
+          texts
+          data
+          reserve
+          unlimitedData
+          unlimitedMinutes
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+  }
+}

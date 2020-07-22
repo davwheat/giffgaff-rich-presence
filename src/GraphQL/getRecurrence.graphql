@@ -1,0 +1,10 @@
+query getRecurrence {
+  settings: recurrence {
+    autoTopupAmount
+    autoTopupMaxPerMonth
+    autoTopupEnabled
+    bundleRecurrenceEnabled
+    bundleRecurrenceSku
+    __typename
+  }
+}
