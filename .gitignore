@@ -1,0 +1,7 @@
+# copies of HTTP requests made by the app
+# used to deconstruct the API
+#
+# no peeking - get them yourself!
+HTTP
+.vscode
+node_modules

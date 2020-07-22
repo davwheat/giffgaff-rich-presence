@@ -1,0 +1,21 @@
+{
+  "name": "giffgaff-rich-presence",
+  "private": "true",
+  "version": "0.1.0",
+  "description": "Show your live giffgaff goodybag usage on Discord",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node .",
+    "lint": "prettier --write \"src/**/*.{js,json,graphql}\""
+  },
+  "author": "davwheat",
+  "license": "MIT",
+  "dependencies": {
+    "discord-rich-presence": "^0.0.8",
+    "node-fetch": "^2.6.0",
+    "set-cookie-parser": "^2.4.6"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  }
+}
