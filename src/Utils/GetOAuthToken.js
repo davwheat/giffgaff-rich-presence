@@ -2,7 +2,6 @@ const fetch = require('node-fetch');
 
 const Config = require('../Config/config.json');
 const Endpoints = require('../Config/endpoints');
-const Tokens = require('../Config/token');
 
 const setCookie = require('set-cookie-parser');
 
@@ -23,7 +22,7 @@ async function GetOAuthToken() {
     method: 'POST',
     body: Body,
     headers: {
-      authorization: Tokens,
+      authorization: Config.oauthToken,
       accept: 'application/json',
     },
   });
