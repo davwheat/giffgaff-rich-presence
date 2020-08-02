@@ -23,19 +23,22 @@ class Member {
 
     // Current goodybag
     const current = credit.current;
-    this.currentGoodybag = new Goodybag(
-      current.sku,
-      current.expiryDate,
-      undefined,
-      current.reserve,
-      current.price,
-      current.allowance,
-      current.balance
-    );
+    if (!current) this.currentGoodybag = null;
+    else
+      this.currentGoodybag = new Goodybag(
+        current.sku,
+        current.expiryDate,
+        undefined,
+        current.reserve,
+        current.price,
+        current.allowance,
+        current.balance
+      );
 
     // Queued/recurring goodybag
     const next = credit.next;
-    this.nextGoodybag = new Goodybag(next.sku, undefined, next.startDate, next.reserve, next.price, next.allowance, undefined, true);
+    if (!next) this.nextGoodybag = null;
+    else this.nextGoodybag = new Goodybag(next.sku, undefined, next.startDate, next.reserve, next.price, next.allowance, undefined, true);
   }
 }
 
