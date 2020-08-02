@@ -5,6 +5,8 @@ Show your giffgaff SIM usage in Discord!
 ![](docs/example1.gif)
 ![](docs/example2.gif)
 
+[View changelog](CHANGELOG.md)
+
 ## Setup
 
 1. Clone the repo/Download the ZIP
