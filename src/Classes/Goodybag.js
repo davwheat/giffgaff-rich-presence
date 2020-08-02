@@ -58,6 +58,7 @@ class Goodybag {
         goodybag = Assets.imageKeys.goodybags[10];
         break;
       case 'BD043': //! £10 golden goodybag
+        this.isGolden = true;
         goodybag = Assets.imageKeys.goodybags['10-golden'];
         break;
       case 'BD037': //! £12 goodybag
