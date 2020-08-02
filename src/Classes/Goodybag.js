@@ -1,27 +1,6 @@
 const Assets = require('../Config/assets.json');
 
 class Goodybag {
-  static sku;
-  static imageKey;
-
-  static expiry;
-  static expiryString;
-
-  static start;
-  static startString;
-
-  static price;
-  static priceString;
-
-  static reservetank;
-  static outOfData;
-
-  static allowances;
-  static remainingAllowances;
-  static usedAllowances;
-
-  static isQueued = false;
-
   constructor(sku, expiryDate, startDate, reservetank, price, allowances, balances, isQueued = false) {
     this.SKU = sku;
 

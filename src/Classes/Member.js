@@ -3,14 +3,6 @@ const Goodybag = require('./Goodybag');
 const Config = require('../Config/config.json');
 
 class Member {
-  static id;
-  static membername;
-
-  static credit;
-  static creditString;
-  static currentGoodybag;
-  static nextGoodybag;
-
   constructor(id, membername, credit) {
     if (Config.debug) console.log('[D] Creating Member class with membername ' + membername + ' (ID ' + id + ')');
 
