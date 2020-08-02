@@ -109,7 +109,7 @@ function RefreshPresence(Member) {
       details: 'Unltd mins and texts',
       largeImageKey: Member.currentGoodybag.imageKey,
       smallImageKey: Member.credit < 0.5 && hasQueuedGoodybag ? Member.nextGoodybag.imageKey : Assets.imageKeys.payg_icon,
-      largeImageText: `${Member.currentGoodybag.priceStringShort} goodybag ${Member.currentGoodybag.reservetank ? 'with 1 GB extra' : ''}`,
+      largeImageText: `${Member.currentGoodybag.priceStringShort} goodybag${Member.currentGoodybag.reservetank ? ' with 1 GB extra' : ''}`,
       smallImageText: Member.credit < 0.5 && hasQueuedGoodybag ? nextGoodybagText : payg,
       instance: true,
     };
