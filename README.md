@@ -1,6 +1,9 @@
 # giffgaff Discord Rich Presence
 
-Show your giffgaff goodybag usage in Discord!
+Show your giffgaff SIM usage in Discord!
+
+![](docs/example1.gif)
+![](docs/example2.gif)
 
 ## Setup
 
