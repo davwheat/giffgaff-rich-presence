@@ -21,6 +21,10 @@ Show your giffgaff SIM usage in Discord!
 
 The token you need is the one included in the `Authorization` header to the OAuth API, preceded with `Basic`, **not** `Bearer`. Stick it in your `config.json`.
 
+## Known issues
+
+- Extra GB disappears once depleted [(#2)](https://github.com/davwheat/giffgaff-rich-presence/issues/2)
+
 ## About
 
 ### How does this work?
