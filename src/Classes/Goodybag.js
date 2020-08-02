@@ -40,7 +40,7 @@ class Goodybag {
     }
 
     this.price = price;
-    this.priceString = `£${Math.floor(price / 100)}.${String(price - Math.floor(price / 100) * 100).padEnd('2', '0')}`;
+    this.priceString = `£${Math.floor(price / 100)}.${String(price - Math.floor(price / 100) * 100).padStart('2', '0')}`;
     this.priceStringShort = `£${Math.floor(price / 100)}`;
 
     this.reservetank = reservetank;

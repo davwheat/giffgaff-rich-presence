@@ -19,7 +19,7 @@ class Member {
   UpdateCredit(credit) {
     // PAYG credit
     this.credit = credit.amount;
-    this.creditString = `£${Math.floor(this.credit / 100)}.${String(this.credit - Math.floor(this.credit / 100) * 100).padEnd('2', '0')}`;
+    this.creditString = `£${Math.floor(this.credit / 100)}.${String(this.credit - Math.floor(this.credit / 100) * 100).padStart('2', '0')}`;
 
     // Current goodybag
     const current = credit.current;
