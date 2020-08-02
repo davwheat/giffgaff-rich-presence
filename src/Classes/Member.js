@@ -40,9 +40,9 @@ class Member {
       if (Config.debug)
         console.log(
           '[D]             Data: ' +
-            this.currentGoodybag.remainingAllowances.data.GB +
+            Math.round(this.currentGoodybag.remainingAllowances.data.GB * 1000) / 1000 +
             ' GB of ' +
-            this.currentGoodybag.allowances.data.GB +
+            (this.currentGoodybag.allowances.data.GB + this.currentGoodybag.allowances.reserve.GB) +
             ' GB'
         );
       if (Config.debug) console.log('[D]          Expires: ' + this.currentGoodybag.expiryString);
@@ -57,7 +57,8 @@ class Member {
       this.nextGoodybag = new Goodybag(next.sku, undefined, next.startDate, next.reserve, next.price, next.allowance, undefined, true);
 
       if (Config.debug) console.log('[D]    Next goodybag: ' + this.nextGoodybag.priceStringShort);
-      if (Config.debug) console.log('[D]             Data: ' + this.nextGoodybag.allowances.data.GB + ' GB');
+      if (Config.debug)
+        console.log('[D]             Data: ' + (this.nextGoodybag.allowances.data.GB + this.currentGoodybag.allowances.reserve.GB) + ' GB');
       if (Config.debug) console.log('[D]           Starts: ' + this.nextGoodybag.startString);
     }
 
