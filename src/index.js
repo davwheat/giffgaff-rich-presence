@@ -60,34 +60,76 @@ function RefreshPresence(Member) {
   //     (Member.currentGoodybag.allowances.data.GB + Member.currentGoodybag.allowances.reserve.GB)
   // );
 
-  let totalData = Member.currentGoodybag.allowances.data.GB + Member.currentGoodybag.allowances.reserve.GB;
-  let totalUsedData = Math.round((Member.currentGoodybag.usedAllowances.data.GB + Member.currentGoodybag.usedAllowances.reserve.GB) * 100) / 100;
-  let totalRemainingData =
-    Math.round((Member.currentGoodybag.remainingAllowances.data.GB + Member.currentGoodybag.remainingAllowances.reserve.GB) * 100) / 100;
+  const hasActiveGoodybag = !!Member.currentGoodybag;
+  const hasQueuedGoodybag = !!Member.nextGoodybag;
 
-  let remainingMB = totalRemainingData * 1024;
+  let totalData = null,
+    totalUsedData = null,
+    totalRemainingData = null,
+    remainingMB = null,
+    dataUsage = null;
 
-  let dataUsage = remainingMB <= 1024 ? `${remainingMB} MB left of ${totalData} GB` : `${totalUsedData} GB used of ${totalData} GB`;
+  if (hasActiveGoodybag) {
+    totalData = Member.currentGoodybag.allowances.data.GB + Member.currentGoodybag.allowances.reserve.GB;
+    totalUsedData = Math.round((Member.currentGoodybag.usedAllowances.data.GB + Member.currentGoodybag.usedAllowances.reserve.GB) * 100) / 100;
+    totalRemainingData =
+      Math.round((Member.currentGoodybag.remainingAllowances.data.GB + Member.currentGoodybag.remainingAllowances.reserve.GB) * 100) / 100;
+
+    remainingMB = totalRemainingData * 1024;
+
+    dataUsage = remainingMB <= 1024 ? `${remainingMB} MB left of ${totalData} GB` : `${totalUsedData} GB used of ${totalData} GB`;
+  }
 
   let payg = `Credit: ${Member.creditString}`;
 
-  let nextGoodybag;
-  if (Member.nextGoodybag) {
+  let nextGoodybagText;
+  if (hasQueuedGoodybag) {
     let nextGoodybagGB = Member.nextGoodybag.allowances.data.GB + Member.nextGoodybag.allowances.reserve.GB;
 
-    nextGoodybag = `Next goodybag: ${Member.nextGoodybag.priceStringShort} (${
+    nextGoodybagText = `Next goodybag: ${Member.nextGoodybag.priceStringShort} (${
       nextGoodybagGB >= 1 ? `${nextGoodybagGB} GB` : `${nextGoodybagGB * 1024} MB`
     })`;
   }
 
-  if (Member.credit === 0)
+  if (hasActiveGoodybag) {
+    console.log({
+      state: dataUsage,
+      details: 'Unltd mins and texts',
+      largeImageKey: Member.currentGoodybag.imageKey,
+      smallImageKey: Member.credit < 0.5 && hasQueuedGoodybag ? Member.nextGoodybag.imageKey : Assets.imageKeys.payg_icon,
+      largeImageText: `${Member.currentGoodybag.priceStringShort} goodybag ${Member.currentGoodybag.reservetank ? 'with 1 GB extra' : ''}`,
+      smallImageText: Member.credit < 0.5 && hasQueuedGoodybag ? nextGoodybagText : payg,
+      instance: true,
+    });
+
     client.updatePresence({
       state: dataUsage,
       details: 'Unltd mins and texts',
       largeImageKey: Member.currentGoodybag.imageKey,
-      smallImageKey: Member.credit === 0 && nextGoodybag ? Member.nextGoodybag.imageKey : Assets.imageKeys.payg_icon,
-      largeImageText: `${Member.nextGoodybag.priceStringShort} goodybag ${Member.currentGoodybag.reservetank ? 'with 1 GB extra' : ''}`,
-      smallImageText: Member.credit === 0 && nextGoodybag ? nextGoodybag : payg,
+      smallImageKey: Member.credit < 0.5 && hasQueuedGoodybag ? Member.nextGoodybag.imageKey : Assets.imageKeys.payg_icon,
+      largeImageText: `${Member.currentGoodybag.priceStringShort} goodybag ${Member.currentGoodybag.reservetank ? 'with 1 GB extra' : ''}`,
+      smallImageText: Member.credit < 0.5 && hasQueuedGoodybag ? nextGoodybagText : payg,
       instance: true,
     });
+  } else {
+    console.log({
+      state: `Credit: ${payg}`,
+      details: null,
+      largeImageKey: Assets.imageKeys.payg_icon,
+      smallImageKey: Assets.imageKeys.logo_square,
+      largeImageText: 'No active goodybag - just credit',
+      smallImageText: 'giffgaff, the mobile network run by you',
+      instance: true,
+    });
+
+    client.updatePresence({
+      state: `Credit: ${payg}`,
+      details: null,
+      largeImageKey: Assets.imageKeys.payg_icon,
+      smallImageKey: Assets.imageKeys.logo_square,
+      largeImageText: 'No active goodybag - just credit',
+      smallImageText: 'giffgaff, the mobile network run by you',
+      instance: true,
+    });
+  }
 }
