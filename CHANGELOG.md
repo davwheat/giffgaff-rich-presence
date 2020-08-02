@@ -1,3 +1,9 @@
+# 0.2.3 - Default refresh interval decrease
+
+```diff
+* Lowered default refresh interval from 30 mins to 5 mins
+```
+
 # 0.2.2 - Refactors and documentation (2020-08-02)
 
 ```diff
