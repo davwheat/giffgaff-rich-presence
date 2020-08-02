@@ -1,5 +1,7 @@
 const Goodybag = require('./Goodybag');
 
+const Config = require('../Config/config.json');
+
 class Member {
   static id;
   static membername;
@@ -10,6 +12,8 @@ class Member {
   static nextGoodybag;
 
   constructor(id, membername, credit) {
+    if (Config.debug) console.log('[D] Creating Member class with membername ' + membername + ' (ID ' + id + ')');
+
     this.id = id;
     this.membername = membername;
 
@@ -17,14 +21,20 @@ class Member {
   }
 
   UpdateCredit(credit) {
+    if (Config.debug) console.log('[D] ====== Member info ======');
+
     // PAYG credit
     this.credit = credit.amount;
     this.creditString = `£${Math.floor(this.credit / 100)}.${String(this.credit - Math.floor(this.credit / 100) * 100).padStart('2', '0')}`;
 
+    if (Config.debug) console.log('[D] Credit: ' + this.creditString);
+
     // Current goodybag
     const current = credit.current;
-    if (!current) this.currentGoodybag = null;
-    else
+    if (!current) {
+      this.currentGoodybag = null;
+      if (Config.debug) console.log('[D] Current goodybag: none');
+    } else {
       this.currentGoodybag = new Goodybag(
         current.sku,
         current.expiryDate,
@@ -34,11 +44,32 @@ class Member {
         current.allowance,
         current.balance
       );
+      if (Config.debug) console.log('[D] Current goodybag: ' + this.currentGoodybag.priceStringShort);
+      if (Config.debug)
+        console.log(
+          '[D]             Data: ' +
+            this.currentGoodybag.remainingAllowances.data.GB +
+            ' GB of ' +
+            this.currentGoodybag.allowances.data.GB +
+            ' GB'
+        );
+      if (Config.debug) console.log('[D]          Expires: ' + this.currentGoodybag.expiryString);
+    }
 
     // Queued/recurring goodybag
     const next = credit.next;
-    if (!next) this.nextGoodybag = null;
-    else this.nextGoodybag = new Goodybag(next.sku, undefined, next.startDate, next.reserve, next.price, next.allowance, undefined, true);
+    if (!next) {
+      this.nextGoodybag = null;
+      if (Config.debug) console.log('[D]    Next goodybag: none');
+    } else {
+      this.nextGoodybag = new Goodybag(next.sku, undefined, next.startDate, next.reserve, next.price, next.allowance, undefined, true);
+
+      if (Config.debug) console.log('[D]    Next goodybag: ' + this.nextGoodybag.priceStringShort);
+      if (Config.debug) console.log('[D]             Data: ' + this.nextGoodybag.allowances.data.GB + ' GB');
+      if (Config.debug) console.log('[D]           Starts: ' + this.nextGoodybag.startString);
+    }
+
+    if (Config.debug) console.log('[D] =========================');
   }
 }
 

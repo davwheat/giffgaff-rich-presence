@@ -34,11 +34,12 @@ I got the app's token by looking at my own internet traffic, not by decompiling 
 
 ## Configuration
 
-|       Field       |     Default     | Description                                          |
-| :---------------: | :-------------: | ---------------------------------------------------- |
-|   `membername`    |  `"mrcoolman"`  | Your giffgaff membername                             |
-|    `password`     | `"password123"` | Your giffgaff password                               |
-| `refreshInterval` |      `30`       | Amount of mins between usage updates<sup>[1]</sup>   |
-|   `oauthToken`    |  `<nonsense>`   | Set this to the Basic token used by the giffgaff app |
+|       Field       |     Default     | Description                                                                        |
+| :---------------: | :-------------: | ---------------------------------------------------------------------------------- |
+|   `membername`    |  `"mrcoolman"`  | Your giffgaff membername                                                           |
+|    `password`     | `"password123"` | Your giffgaff password                                                             |
+| `refreshInterval` |      `30`       | Amount of mins between usage updates<sup>[1]</sup>                                 |
+|   `oauthToken`    |  `<nonsense>`   | Set this to the Basic token used by the giffgaff app                               |
+|      `debug`      |     `false`     | Logs extra content to console. May expose sensitive data, such as your auth token. |
 
 [1] - Don't go too low with this or you might trigger some form of spam prevention. 30 minutes seems reasonable to me. To be extra safe, you can bump it to 60 mins. If you're a risk taker, maybe try 10 or 15.

@@ -18,6 +18,9 @@ async function GetOAuthToken() {
   Body.append('username', Config.membername);
   Body.append('password', Config.password);
 
+  if (Config.debug) console.log('[D] Using specified oauth token ' + Config.oauthToken.substr(0, 16) + '...');
+  if (Config.debug) console.log('[D] Contacting OAuth endpoint: ' + Endpoints.oauth);
+
   const response = await fetch(Endpoints.oauth, {
     method: 'POST',
     body: Body,
@@ -27,13 +30,18 @@ async function GetOAuthToken() {
     },
   });
 
+  if (Config.debug) console.log('[D] Response received');
+  if (response.ok && Config.debug) console.log('[D] Response OK');
+
   // console.log(await response.clone().text());
 
+  if (Config.debug) console.log('[D] Saving cookies...');
   const cookies = setCookie.parse(await response.headers.get('set-cookie'));
 
   const cs = cookies.reduce((cookieString, cookie) => {
     return cookieString + `${cookie.name}=${cookie.value};`;
   }, '');
+  if (Config.debug) console.log('[D] Done!');
 
   const responseJson = await response.json();
   return {

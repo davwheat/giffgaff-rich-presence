@@ -11,7 +11,11 @@ const Endpoints = require('../Config/endpoints');
 const Member = require('../Classes/Member');
 
 async function RefreshCredit(oauthToken) {
-  const Request = [{ operationName: '', query: refreshCreditQuery, variables: {} }];
+  const Request = [{ operationName: 'refreshCreditData', query: refreshCreditQuery, variables: {} }];
+
+  if (Config.debug) console.log('[D] Preparing GraphQL operation "' + Request[0].operationName + '"');
+  if (Config.debug) console.log('[D] Contacting endpoint: ' + Endpoints.main);
+  if (Config.debug) console.log('[D] Using member token...');
 
   const response = await fetch(Endpoints.main, {
     method: 'POST',
@@ -32,6 +36,7 @@ async function RefreshCredit(oauthToken) {
 
   const memberData = responseJson[0].data.member;
 
+  if (Config.debug) console.log('[D] Creating instance of Member class with returned data...');
   return new Member(memberData.id, memberData.memberName, memberData.credit);
 }
 
