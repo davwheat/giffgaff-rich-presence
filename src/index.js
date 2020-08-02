@@ -101,14 +101,7 @@ function RefreshPresence(Member) {
 
   let payg = `Credit: ${Member.creditString}`;
 
-  let nextGoodybagText;
-  if (hasQueuedGoodybag) {
-    let nextGoodybagGB = Member.nextGoodybag.allowances.data.GB + Member.nextGoodybag.allowances.reserve.GB;
-
-    nextGoodybagText = `Next goodybag: ${Member.nextGoodybag.priceStringShort} (${
-      nextGoodybagGB >= 1 ? `${nextGoodybagGB} GB` : `${nextGoodybagGB * 1024} MB`
-    })`;
-  }
+  let nextGoodybagText = hasQueuedGoodybag && `Queued: ${Member.nextGoodybag.descriptionWithDataCompressed}`;
 
   if (hasActiveGoodybag) {
     const presenceObj = {
