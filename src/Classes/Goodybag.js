@@ -142,6 +142,18 @@ class Goodybag {
       balances = undefined;
       this.isQueued = true;
     }
+
+    this.description = `${this.priceStringShort} ${this.isGolden ? 'golden ' : ''}goodybag`;
+
+    this.descriptionWithData = `${this.description} with ${
+      this.allowances.data.GB >= 1
+        ? `${this.allowances.data.GB} GB${this.reservetank ? ` (+ 1 GB extra)` : ''}`
+        : `${this.allowances.data.MB} MB`
+    } data`;
+
+    this.descriptionWithDataCompressed = `${this.description} (${
+      this.allowances.data.GB >= 1 ? `${this.allowances.data.GB}${this.reservetank ? ` + 1` : ''} GB` : `${this.allowances.data.MB} MB`
+    })`;
   }
 }
 
