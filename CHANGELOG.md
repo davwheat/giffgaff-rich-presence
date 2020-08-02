@@ -1,3 +1,19 @@
+# 0.2.2 - Refactors and documentation (2020-08-02)
+
+```diff
++ Add changelog
++ Add GIF examples to README
++ Add isGolden property to Goodybag class
++ Add known issue to README
++ Add goodybag description field
+
+* Add missing rounding to data usage debug log
+* Fix extra space in large image text
+* Mop up some spilt code
+
+- Remove static fields on classes
+```
+
 # 0.2.1 - Debug logs (2020-08-02)
 
 ```diff
