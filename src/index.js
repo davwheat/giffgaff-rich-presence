@@ -44,9 +44,10 @@ async function Start() {
   }, 1000 * 60 * Config.refreshInterval);
 
   // Reset presence every 2 mins to prevent timeouts
-  setInterval(() => {
-    RefreshPresence(Member);
-  }, 1000 * 60 * 2);
+  // setInterval(() => {
+  //   if (Config.debug) console.log('[D] Refreshing rich presence (to prevent RPC disconnects)');
+  //   RefreshPresence(Member);
+  // }, 1000 * 60 * 2);
 
   RefreshPresence(Member);
 }
