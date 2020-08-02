@@ -1,7 +1,7 @@
 {
   "membername": "mrcoolman",
   "password": "password123",
-  "refreshInterval": 30,
+  "refreshInterval": 5,
   "oauthToken": "Basic ARandomStringOfCharactersForYouToFindYourself",
   "__warning!": "Enabling DEBUG may expose sensitive data, such as your auth token. Proceed at your own risk!",
   "debug": false
