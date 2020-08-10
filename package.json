@@ -10,7 +10,8 @@
     "watch": "pm2 start src/index.js --watch --name \"giffgaff rich presence\"",
     "stop": "pm2 stop src/index.js --watch",
     "status": "pm2 status",
-    "monitor": "pm2 monit"
+    "monitor": "pm2 monit",
+    "logs": "pm2 logs \"giffgaff rich presence\""
   },
   "author": "davwheat",
   "license": "MIT",
