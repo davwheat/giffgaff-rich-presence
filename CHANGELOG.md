@@ -1,3 +1,11 @@
+# 0.2.4 - Default refresh interval decrease
+
+```diff
++ Add PM2 support for easy development
+
+* Fix broken credit check
+```
+
 # 0.2.3 - Default refresh interval decrease
 
 ```diff
