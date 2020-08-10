@@ -103,14 +103,16 @@ function RefreshPresence(Member) {
 
   let nextGoodybagText = hasQueuedGoodybag && `Queued: ${Member.nextGoodybag.descriptionWithDataCompressed}`;
 
+  console.log('TEST ' + Member.credit);
+
   if (hasActiveGoodybag) {
     const presenceObj = {
       state: dataUsage,
       details: 'Unltd mins and texts',
       largeImageKey: Member.currentGoodybag.imageKey,
-      smallImageKey: Member.credit < 0.5 && hasQueuedGoodybag ? Member.nextGoodybag.imageKey : Assets.imageKeys.payg_icon,
+      smallImageKey: Member.creditPounds < 1 && hasQueuedGoodybag ? Member.nextGoodybag.imageKey : Assets.imageKeys.payg_icon,
       largeImageText: `${Member.currentGoodybag.priceStringShort} goodybag${Member.currentGoodybag.reservetank ? ' with 1 GB extra' : ''}`,
-      smallImageText: Member.credit < 0.5 && hasQueuedGoodybag ? nextGoodybagText : payg,
+      smallImageText: Member.creditPounds < 1 && hasQueuedGoodybag ? nextGoodybagText : payg,
       instance: true,
     };
 

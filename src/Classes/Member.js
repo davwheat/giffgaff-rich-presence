@@ -17,7 +17,8 @@ class Member {
 
     // PAYG credit
     this.credit = credit.amount;
-    this.creditString = `£${Math.floor(this.credit / 100)}.${String(this.credit - Math.floor(this.credit / 100) * 100).padStart('2', '0')}`;
+    this.creditPounds = credit.amount / 100;
+    this.creditString = `£${Math.floor(this.creditPounds)}.${String(this.credit - Math.floor(this.credit / 100) * 100).padStart('2', '0')}`;
 
     if (Config.debug) console.log('[D] Credit: ' + this.creditString);
 
