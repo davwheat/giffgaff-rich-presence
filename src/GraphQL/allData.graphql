@@ -1,0 +1,170 @@
+query getAllData($tags: [String]) {
+  balance {
+    amount
+    __typename
+  }
+  currentGoodybag {
+    sku
+    expiryDate
+    expiresIn {
+      days
+      hours
+      __typename
+    }
+    reserve
+    price
+    allowance {
+      minutes
+      texts
+      data
+      euData
+      reserve
+      unlimitedData
+      unlimitedMinutes
+      __typename
+    }
+    balance {
+      data
+      euData
+      minutes
+      texts
+      reserve
+      outOfMinutes
+      outOfTexts
+      outOfData
+      __typename
+    }
+    __typename
+  }
+  member {
+    id
+    memberName
+    email
+    group
+    sim {
+      phoneNumber
+      status
+      msisdn
+      ssn
+      __typename
+    }
+    payment {
+      __typename
+      ... on Paypal {
+        email
+        __typename
+      }
+      ... on Card {
+        lastDigits
+        type
+        expired
+        expiryDate
+        fullName
+        __typename
+      }
+    }
+    goodybags {
+      prepaid {
+        sku
+        startDate
+        reserve
+        price
+        allowance {
+          minutes
+          texts
+          data
+          reserve
+          unlimitedData
+          unlimitedMinutes
+          __typename
+        }
+      }
+    }
+    credit {
+      amount
+      freeGiffgaff {
+        enabled
+        expiryDate
+        __typename
+      }
+      current {
+        sku
+        expiryDate
+        expiresIn {
+          days
+          hours
+          __typename
+        }
+        reserve
+        price
+        allowance {
+          minutes
+          texts
+          data
+          euData
+          reserve
+          unlimitedData
+          unlimitedMinutes
+          __typename
+        }
+        balance {
+          data
+          euData
+          minutes
+          texts
+          reserve
+          outOfMinutes
+          outOfTexts
+          outOfData
+          __typename
+        }
+        __typename
+      }
+      next {
+        sku
+        startDate
+        reserve
+        price
+        allowance {
+          minutes
+          texts
+          data
+          reserve
+          unlimitedData
+          unlimitedMinutes
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+  recurrence {
+    autoTopupAmount
+    autoTopupMaxPerMonth
+    autoTopupEnabled
+    bundleRecurrenceEnabled
+    bundleRecurrenceSku
+    __typename
+  }
+  items: products(tags: $tags) {
+    id
+    sku
+    price
+    startDate
+    expiryDate
+    earlyPurchaseExpiryDate
+    reserve
+    allowance {
+      minutes
+      texts
+      data
+      reserve
+      unlimitedData
+      unlimitedMinutes
+      __typename
+    }
+    __typename
+  }
+}

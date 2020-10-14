@@ -41,6 +41,8 @@ I got the app's token by looking at my own internet traffic, not by decompiling 
 
 **If giffgaff actually decided to implement their member's ideas properly, this ridiculous method wouldn't be needed.** Even just allowing members to generate their own API keys which can only access their account would be **AMAZING**!
 
+I've found the majority of data that can be fetched via the API, and you can find that query [here](src/GraphQL/allData.graphql).
+
 ## Configuration
 
 |       Field       |     Default     | Description                                                                        |

@@ -1,0 +1,9 @@
+# "variables":{"input":{"bundleRecurrenceSku":"BD037","bundleRecurrenceEnabled":true}}
+# Allows changing of recurring goodybag!
+
+mutation updateRecurrence($input: RecurrenceInput!) {
+  update: updateRecurrence(input: $input) {
+    success
+    __typename
+  }
+}
