@@ -1,5 +1,7 @@
 # giffgaff Discord Rich Presence
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8a3c8e84f83d44d1ae8bd63c25b63b71)](https://app.codacy.com/manual/davwheat/giffgaff-rich-presence?utm_source=github.com&utm_medium=referral&utm_content=davwheat/giffgaff-rich-presence&utm_campaign=Badge_Grade_Dashboard)
+
 Show your giffgaff SIM usage in Discord!
 
 ![](docs/example1.gif)
