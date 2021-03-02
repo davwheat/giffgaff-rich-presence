@@ -11,13 +11,14 @@ const Endpoints = require('../Config/endpoints');
 const Member = require('../Classes/Member');
 
 const Config = require('../Config/config.json');
+const DebugLog = require('./DebugLog');
 
 async function GetMember(oauthToken) {
   const Request = [{ operationName: 'getMember', query: getMemberQuery, variables: {} }];
 
-  if (Config.debug) console.log('[D] Preparing GraphQL operation "' + Request[0].operationName + '"');
-  if (Config.debug) console.log('[D] Contacting endpoint: ' + Endpoints.main);
-  if (Config.debug) console.log('[D] Using member token...');
+  DebugLog('Preparing GraphQL operation "' + Request[0].operationName + '"');
+  DebugLog('Contacting endpoint: ' + Endpoints.main);
+  DebugLog('Using member token...');
 
   const response = await fetch(Endpoints.main, {
     method: 'POST',
@@ -38,7 +39,7 @@ async function GetMember(oauthToken) {
 
   const memberData = responseJson[0].data.member;
 
-  if (Config.debug) console.log('[D] Creating instance of Member class with returned data...');
+  DebugLog('Creating instance of Member class with returned data...');
   return new Member(memberData.id, memberData.memberName, memberData.credit);
 }
 

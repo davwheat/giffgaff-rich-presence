@@ -1,10 +1,12 @@
 const GetMember = require('./Utils/GetMember');
 const GetOAuthToken = require('./Utils/GetOAuthToken');
+const DebugLog = require('./Utils/DebugLog');
 
 console.log('Loading JSON data...');
 const Config = require('./Config/config.json');
 const Assets = require('./Config/assets.json');
-if (Config.debug) console.log('[D] Done!');
+
+DebugLog('Done!');
 
 console.log('Initialising rich presence');
 
@@ -12,7 +14,7 @@ console.log('Initialising rich presence');
 const client = require('discord-rich-presence')('735145438293786704');
 
 console.log('Connected to Discord');
-if (Config.debug) console.log('[D] Connected with client ID ' + '735145438293786704');
+DebugLog('Connected with client ID ' + '735145438293786704');
 
 async function Start() {
   console.log('Getting OAuth token...');
@@ -26,7 +28,7 @@ async function Start() {
 
   console.log('OAuth token generated successfully!');
 
-  if (Config.debug) console.log('[D] Token: ' + oauthToken.substr(0, 16) + '...');
+  DebugLog('Token: ' + oauthToken.substr(0, 16) + '...');
 
   setInterval(async () => {
     // refresh token every 8 hrs
@@ -36,16 +38,16 @@ async function Start() {
     cookieString = data.cookie;
 
     console.log('OAuth token refreshed.');
-    if (Config.debug) console.log('[D] Refreshed token: ' + oauthToken.substr(0, 16) + '...');
+    DebugLog('Refreshed token: ' + oauthToken.substr(0, 16) + '...');
   }, 1000 * 60 * 60 * 8);
 
-  if (Config.debug) console.log('[D] Getting member info...');
+  DebugLog('Getting member info...');
   let Member = await GetMember(oauthToken);
-  if (Config.debug) console.log('[D] Done!');
+  DebugLog('Done!');
 
   if (Member === null) {
     console.log('Try again later');
-    if (Config.debug) console.log('[D] Maybe you were ratelimited or Imperva/Incapsula kicked in? Try again in an hour or restart your router.');
+    DebugLog('Maybe you were ratelimited or Imperva/Incapsula kicked in? Try again in an hour or restart your router.');
 
     client.disconnect();
     return;
@@ -53,16 +55,16 @@ async function Start() {
 
   // Update goodybag info
   setInterval(async () => {
-    if (Config.debug) console.log('[D] Refreshing member info...');
+    DebugLog('Refreshing member info...');
     Member = await GetMember(oauthToken);
-    if (Config.debug) console.log('[D] Done!');
-    if (Config.debug) console.log('[D] Refreshing rich presence (after new data fetched)');
+    DebugLog('Done!');
+    DebugLog('Refreshing rich presence (after new data fetched)');
     RefreshPresence(Member);
   }, 1000 * 60 * Config.refreshInterval);
 
   // Reset presence every 2 mins to prevent timeouts
   // setInterval(() => {
-  //   if (Config.debug) console.log('[D] Refreshing rich presence (to prevent RPC disconnects)');
+  //   DebugLog('Refreshing rich presence (to prevent RPC disconnects)');
   //   RefreshPresence(Member);
   // }, 1000 * 60 * 2);
 
@@ -103,7 +105,7 @@ function RefreshPresence(Member) {
 
   let nextGoodybagText = hasQueuedGoodybag && `Queued: ${Member.nextGoodybag.descriptionWithDataCompressed}`;
 
-  console.log('TEST ' + Member.credit);
+  // console.log('TEST ' + Member.credit);
 
   if (hasActiveGoodybag) {
     const presenceObj = {
@@ -116,11 +118,11 @@ function RefreshPresence(Member) {
       instance: true,
     };
 
-    if (Config.debug) console.log(presenceObj);
+    DebugLog(JSON.stringify(presenceObj, ' ', 2));
     client.updatePresence(presenceObj);
   } else {
     const presenceObj = {
-      state: `Credit: ${payg}`,
+      state: payg,
       details: 'No goodybag',
       largeImageKey: Assets.imageKeys.payg_icon,
       smallImageKey: Assets.imageKeys.logo_square,
@@ -129,7 +131,7 @@ function RefreshPresence(Member) {
       instance: true,
     };
 
-    if (Config.debug) console.log(presenceObj);
+    DebugLog(JSON.stringify(presenceObj, ' ', 2));
     client.updatePresence(presenceObj);
   }
 }

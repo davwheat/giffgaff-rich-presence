@@ -6,6 +6,7 @@ const Endpoints = require('../Config/endpoints');
 const setCookie = require('set-cookie-parser');
 
 const { URLSearchParams } = require('url');
+const DebugLog = require('./DebugLog');
 
 // Gets OAuth token using giffgaff app token as authorisation
 //
@@ -18,8 +19,8 @@ async function GetOAuthToken() {
   Body.append('username', Config.membername);
   Body.append('password', Config.password);
 
-  if (Config.debug) console.log('[D] Using specified oauth token ' + Config.oauthToken.substr(0, 16) + '...');
-  if (Config.debug) console.log('[D] Contacting OAuth endpoint: ' + Endpoints.oauth);
+  DebugLog('Using specified oauth token ' + Config.oauthToken.substr(0, 16) + '...');
+  DebugLog('Contacting OAuth endpoint: ' + Endpoints.oauth);
 
   const response = await fetch(Endpoints.oauth, {
     method: 'POST',
@@ -30,18 +31,18 @@ async function GetOAuthToken() {
     },
   });
 
-  if (Config.debug) console.log('[D] Response received');
-  if (response.ok && Config.debug) console.log('[D] Response OK');
+  DebugLog('Response received');
+  if (response.ok) DebugLog('Response OK');
 
   // console.log(await response.clone().text());
 
-  if (Config.debug) console.log('[D] Saving cookies...');
+  DebugLog('Saving cookies...');
   const cookies = setCookie.parse(await response.headers.get('set-cookie'));
 
   const cs = cookies.reduce((cookieString, cookie) => {
     return cookieString + `${cookie.name}=${cookie.value};`;
   }, '');
-  if (Config.debug) console.log('[D] Done!');
+  DebugLog('Done!');
 
   const responseJson = await response.json();
   return {
