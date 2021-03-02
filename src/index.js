@@ -121,7 +121,7 @@ function RefreshPresence(Member) {
   } else {
     const presenceObj = {
       state: `Credit: ${payg}`,
-      details: null,
+      details: 'No goodybag',
       largeImageKey: Assets.imageKeys.payg_icon,
       smallImageKey: Assets.imageKeys.logo_square,
       largeImageText: 'No active goodybag - just credit',
