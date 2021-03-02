@@ -46,11 +46,27 @@ class Goodybag {
       case 'BD038': //! £15 goodybag
         goodybag = Assets.imageKeys.goodybags[15];
         break;
+      case 'BD044': //! £15 golden goodybag
+        this.isGolden = true;
+        goodybag = Assets.imageKeys.goodybags['15-golden'];
+        break;
       case 'BD041': //! £20 goodybag
         goodybag = Assets.imageKeys.goodybags[20];
         break;
+      case 'BD045': //! £20 golden goodybag
+        this.isGolden = true;
+        goodybag = Assets.imageKeys.goodybags['20-golden'];
+        break;
       case 'BD042': //! £25 Always On goodybag
         goodybag = Assets.imageKeys.goodybags[25];
+        break;
+      case 'not assigned': //! £30 golden goodybag
+        this.isGolden = true;
+        goodybag = Assets.imageKeys.goodybags['30-golden'];
+        break;
+      case 'BD046': //! £35 golden goodybag
+        this.isGolden = true;
+        goodybag = Assets.imageKeys.goodybags['35-golden'];
         break;
     }
 

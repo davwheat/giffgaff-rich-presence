@@ -28,12 +28,24 @@
         "noReserve": "15-pound-goodybag",
         "reserve": "15-pound-goodybag-reservetank"
       },
+      "15-golden": {
+        "noReserve": "15-pound-golden-goodybag",
+        "reserve": "15-pound-golden-goodybag-reservetank"
+      },
       "20": {
         "noReserve": "20-pound-goodybag",
         "reserve": "20-pound-goodybag-reservetank"
       },
       "25": {
         "noReserve": "25-pound-goodybag",
+        "reserve": null
+      },
+      "30-golden": {
+        "noReserve": "30-pound-goodybag",
+        "reserve": null
+      },
+      "35-golden": {
+        "noReserve": "30-pound-goodybag",
         "reserve": null
       }
     }
